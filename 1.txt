@@ -1,0 +1,12 @@
+class Candy(object):
+    def eat(self):
+        return"Hah!\n"
+ 
+class Child(object):
+    def __init__(self, name):
+        self.name =  name
+    def call(self, shout):
+        return shout=="HI, %s."%self.name
+    def eat(self, candies):
+        for candy in candies：
+			print "Ya! "+candy.eat()
