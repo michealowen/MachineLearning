@@ -1,1 +1,1 @@
-Repo for implementing some Machine Learning Alogorisms.
+Repo for implementing some Machine Learning algorithms.
