@@ -1,0 +1,71 @@
+网络层及各层神经元数量        迭代次数        批量大小        步长        归一化到(0,5)
+784,30,10                 50               10            0.1
+Epoch  0 completed 准确率: 0.1333
+Epoch  1 completed 准确率: 0.2478
+Epoch  2 completed 准确率: 0.2879
+Epoch  3 completed 准确率: 0.3345
+Epoch  4 completed 准确率: 0.4129
+Epoch  5 completed 准确率: 0.4566
+Epoch  6 completed 准确率: 0.4872
+Epoch  7 completed 准确率: 0.5081
+Epoch  8 completed 准确率: 0.5263
+Epoch  9 completed 准确率: 0.5409
+Epoch  10 completed 准确率: 0.5573
+Epoch  11 completed 准确率: 0.5728
+Epoch  12 completed 准确率: 0.5863
+Epoch  13 completed 准确率: 0.6109
+Epoch  14 completed 准确率: 0.6245
+Epoch  15 completed 准确率: 0.6363
+Epoch  16 completed 准确率: 0.6446
+Epoch  17 completed 准确率: 0.6544
+Epoch  18 completed 准确率: 0.6593
+Epoch  19 completed 准确率: 0.6689
+Epoch  20 completed 准确率: 0.6776
+Epoch  21 completed 准确率: 0.6788
+Epoch  22 completed 准确率: 0.6842
+Epoch  23 completed 准确率: 0.6897
+Epoch  24 completed 准确率: 0.6963
+Epoch  25 completed 准确率: 0.696
+Epoch  26 completed 准确率: 0.7023
+Epoch  27 completed 准确率: 0.7076
+Epoch  28 completed 准确率: 0.7078
+Epoch  29 completed 准确率: 0.7101
+Epoch  30 completed 准确率: 0.711
+Epoch  31 completed 准确率: 0.7111
+Epoch  32 completed 准确率: 0.7144
+Epoch  33 completed 准确率: 0.7146
+Epoch  34 completed 准确率: 0.7167
+Epoch  35 completed 准确率: 0.7185
+Epoch  36 completed 准确率: 0.7243
+Epoch  37 completed 准确率: 0.7741
+Epoch  38 completed 准确率: 0.7925
+Epoch  39 completed 准确率: 0.8021
+Epoch  40 completed 准确率: 0.8111
+Epoch  41 completed 准确率: 0.8142
+Epoch  42 completed 准确率: 0.8148
+Epoch  43 completed 准确率: 0.8168
+Epoch  44 completed 准确率: 0.8201
+Epoch  45 completed 准确率: 0.8234
+Epoch  46 completed 准确率: 0.8254
+Epoch  47 completed 准确率: 0.829
+Epoch  48 completed 准确率: 0.8304
+Epoch  49 completed 准确率: 0.8324
+*******************************
+网络层及各层神经元数量        迭代次数        批量大小        步长        归一化到(0,5)  步长 = 0.005/(当前epoch准确率-上一epoch准确率)
+784,30,10                 50               10            0.1
+Epoch  0 completed 准确率: 0 eta 0.05
+Epoch  1 completed 准确率: 0.268 eta 0.06329113924050632
+Epoch  2 completed 准确率: 0.3084 eta 0.12376237623762379
+Epoch  3 completed 准确率: 0.4093 eta 0.04955401387512389
+Epoch  4 completed 准确率: 0.4535 eta 0.11312217194570132
+Epoch  5 completed 准确率: 0.4848 eta 0.15974440894568692
+Epoch  6 completed 准确率: 0.5688 eta 0.05952380952380955
+Epoch  7 completed 准确率: 0.5758 eta 0.7142857142857136
+Epoch  8 completed 准确率: 0.6645 eta 0.05636978579481398
+Epoch  9 completed 准确率: 0.667 eta 1.9999999999999538
+Epoch  10 completed 准确率: 0.8559 eta 0.026469031233456862
+Epoch  11 completed 准确率: 0.8569 eta 4.999999999999996
+Epoch  12 completed 准确率: 0.8815 eta 0.2032520325203256
+Epoch  13 completed 准确率: 0.8973 eta 0.31645569620253095
+Epoch  14 completed 准确率: 0.9033 eta 0.8333333333333326
+Epoch  15 completed 准确率: 0.9036 eta 16.6666666666685
