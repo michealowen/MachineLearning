@@ -1,6 +1,6 @@
 """
 Author: michealowen
-Last edited: 2019.10.31,Thursday
+Last edited: 2019.1.07,Thursday
 识别0-9数字的神经网络,使用MNIST数据集
 """
 #encoding=UTF-8
@@ -13,7 +13,7 @@ class DRNN:
     digital recognition neural network 的简写
     '''
 
-    def __init__(self,layers,cost='Quadratic'):
+    def __init__(self,layers):
         '''
         Parms:
             layers:指明每一层的神经元个数 denote the number of the neurons of per layer,type(layer):ndarray
@@ -23,7 +23,6 @@ class DRNN:
             alpha:表示sigmoid(Z)
         '''
         self.layers = layers
-        self.cost = cost
         self.layersNum = len(layers)
         self.bias = np.array([np.random.randn(x,1) for x in layers[1:]])
         self.weights = np.array([np.random.randn(x,y) for x,y in zip(layers[:-1],layers[1:])])   #(784,10)(10,10)
@@ -34,15 +33,30 @@ class DRNN:
         '''
         归一化
         '''
-        for i in range(x.shape[1]):
-            x[:,i] = x[:,i]/51
-        return x
+        return x/51
 
     def sigmoid(self,Z):
-        '''
-        改进版sigmoid函数
-        '''
+        #sigmoid函数
         return 1.0/(1.0+np.exp(-Z))
+    
+
+    def new_sigmoid(self,z):
+        '''
+        改进版的sigmoid函数,避免溢出,分两种情况,输入参数为数字和输入参数为向量
+        '''
+        if isinstance(z, (int, float)):
+            if z >= 0:  # 对sigmoid函数的优化，避免了出现极大的数据溢出
+                z = 1.0 / (1 + np.exp(-z))
+            else:
+                z = np.exp(z) / (1 + np.exp(z))
+        else:
+            for row_index, row_value in enumerate(z):
+                for column_index , column_value in enumerate(row_value):
+                    if column_value >= 0:  # 对sigmoid函数的优化，避免了出现极大的数据溢出
+                        z[row_index,column_index] = 1.0 / (1 + np.exp(-column_value))
+                    else:
+                        z[row_index,column_index] = np.exp(column_value) / (1 + np.exp(column_value))        
+        return z
 
     def sigmoid_derivative(self,Z):
         '''
@@ -58,7 +72,7 @@ class DRNN:
             a = self.sigmoid(np.dot(a,w)+b.T)
         return a 
 
-    def SBGD(self,train_data,test_data,epochs,batch_size,eta):
+    def SBGD(self,train_data,test_data,epochs,batch_size,eta,cost='Quadratic'):
         '''
         小批量随机梯度下降
         Parms:
@@ -68,6 +82,7 @@ class DRNN:
             batch_size:批量大小
             eta:每次梯度下降的步长
         '''
+        self.cost = cost
         #先对数据数据进行归一化处理
         train_data[0]=self.Normalization(train_data[0])
         test_data[0]=self.Normalization(test_data[0])
@@ -201,10 +216,16 @@ if __name__ == '__main__':
     mdata.gz = True
     train_images, train_labels = mdata.load_training()
     test_images, test_labels   = mdata.load_testing()
-
+    '''
+    tuple形式 
+    train_data[0]为训练图片 shape(60000,784)
+    train_data[1]为训练图片的标签 shape(60000,)
+    test_data[0]为测试图片 shape(10000,784)
+    test_data[1]为测试图片的标签 shape(10000,)
+    '''
     train_data = [np.array(train_images),np.array(train_labels)]
     test_data = [np.array(test_images),np.array(test_labels)]
     model = DRNN(np.array([784,30,10]))
-    model.SBGD(train_data,test_data,epochs=30,batch_size=5,eta=0.05,cost='cross_entropy')
-    #保存神经网络的权重和偏置
-    model.save_model('bias.npy','weights.npy')
+    #model.SBGD(train_data,test_data,epochs=30,batch_size=5,eta=0.05,cost='cross_entropy')
+    model.SBGD(train_data,test_data,epochs=50,batch_size=10,eta=0.05)
+    #model.save_model('bias.npy','weights.npy')
